@@ -24,18 +24,16 @@ The corresponding live labels use the `factory:` prefix, for example
 
 ---
 
-## Example entry (delete this)
-
-## FQ-142: Expired tokens return 500 instead of 401
+## FQ-1: Add a local favorites watchlist
 - disposition: ready-to-implement
-- source: https://github.com/owner/repo/issues/142
-- last_triaged: 2026-08-16
-- repro: confirmed
-- files_expected: src/auth/verify.ts, src/auth/verify.test.ts
-- load_bearing: true
-- gate_level: deep
-- done_when: `verify.test.ts` has a case for an expired token asserting a 401 response, it fails on `main`, and it passes after the change
+- source: https://github.com/addyosmani/factory-demo/issues/1
+- last_triaged: 2026-08-19
+- repro: confirmed by the stopped implementation run; full gates were green, but independent verification found that persisted favorites retained surplus fields
+- files_expected: lib/favorites.ts, lib/favorites.test.ts, components/favorite-button.tsx, components/movie-card.tsx, app/movies/[id]/page.tsx, app/favorites/page.tsx, app/layout.tsx, app/globals.css
+- load_bearing: false
+- gate_level: full
+- done_when: The local watchlist meets issue #1's existing acceptance criteria; every persisted favorite contains exactly `id`, `title`, `posterPath`, `releaseDate`, and `voteAverage`; a new regression assertion proves surplus fields are discarded; full gates pass; and fresh independent verification accepts the result.
 - confidence: high
-- notes: `src/auth/**` is load-bearing, so this cannot be auto-implemented despite being simple. Route through factory-spec or implement with a forced human read.
+- notes: The owner approved continuing on the already-claimed `claude/fq-1` branch without broadening scope. The live state is therefore `factory:in-progress`; this snapshot retains the triage disposition that made the item implementable.
 
 ---
