@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { FavoriteButton } from "@/components/favorite-button";
 import { SetupNotice } from "@/components/setup-notice";
 import { getMovie, imageUrl, MissingTmdbKeyError, TmdbNotFoundError } from "@/lib/tmdb";
 
@@ -50,7 +51,10 @@ export default async function MoviePage({ params }: MoviePageProps) {
               <span>{movie.voteAverage.toFixed(1)} / 10</span>
             </div>
             <p className="overview">{movie.overview || "TMDB does not have a synopsis for this film yet."}</p>
-            {movie.homepage ? <a className="button" href={movie.homepage}>Official site <span aria-hidden="true">↗</span></a> : null}
+            <div className="detail-actions">
+              <FavoriteButton movie={movie} />
+              {movie.homepage ? <a className="button" href={movie.homepage}>Official site <span aria-hidden="true">↗</span></a> : null}
+            </div>
           </div>
         </div>
       </div>

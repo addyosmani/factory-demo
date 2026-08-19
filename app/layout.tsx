@@ -20,6 +20,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
           </Link>
           <nav aria-label="Primary navigation">
             <Link href="/">Discover</Link>
+            <Link href="/favorites">Favorites</Link>
             <a href="#about">About</a>
           </nav>
         </header>

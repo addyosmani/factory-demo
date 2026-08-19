@@ -1,10 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FavoriteButton } from "@/components/favorite-button";
 import { imageUrl, type MovieSummary } from "@/lib/tmdb";
 
 export function MovieCard({ movie, index }: { movie: MovieSummary; index: number }) {
   return (
     <article className="movie-card">
+      <FavoriteButton movie={movie} />
       <Link href={`/movies/${movie.id}`} aria-label={`View ${movie.title}`}>
         <div className="movie-poster">
           <span className="card-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
