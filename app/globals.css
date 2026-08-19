@@ -38,6 +38,7 @@ img { max-width: 100%; }
 .section-heading h2 { margin: 0; font: 500 clamp(2.5rem, 4vw, 4.4rem)/.95 var(--serif); letter-spacing: -.04em; }
 .section-heading > p { max-width: 430px; margin: 0 0 2px auto; color: var(--muted); font-size: 14px; line-height: 1.65; }
 .movie-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 18px; padding-top: 30px; }
+.movie-card { min-width: 0; }
 .movie-card a { display: block; }
 .movie-poster { position: relative; aspect-ratio: 2/3; overflow: hidden; background: var(--paper-deep); }
 .movie-poster img, .detail-poster img { object-fit: cover; transition: transform .45s ease; }
