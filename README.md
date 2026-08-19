@@ -71,6 +71,10 @@ the ChatGPT desktop app. It covers forking from a checkpoint, local secrets, the
 prompts, GitHub labels, issue handoffs, implementation, verification, human recovery, and
 optional scheduling.
 
+The [first-run learnings](LEARNINGS.md) capture what was fast, what took roughly 82
+minutes, which defects the verifier caught, and where the workflow needs a tighter latency
+budget.
+
 ## Project checks
 
 ```bash
