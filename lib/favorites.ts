@@ -50,7 +50,14 @@ export function writeFavorites(storage: FavoritesStorage | null, favorites: Favo
   if (!storage) return false;
 
   try {
-    storage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
+    const normalizedFavorites = favorites.map(({
+      id,
+      title,
+      posterPath,
+      releaseDate,
+      voteAverage,
+    }) => ({ id, title, posterPath, releaseDate, voteAverage }));
+    storage.setItem(FAVORITES_KEY, JSON.stringify(normalizedFavorites));
     return true;
   } catch {
     return false;
