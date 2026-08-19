@@ -129,7 +129,3 @@ img { max-width: 100%; }
   .site-footer { grid-template-columns: 1fr; gap: 36px; }
   .tmdb-credit { justify-self: start; }
 }
-
-@media (max-width: 430px) {
-  .site-header nav a:last-child { display: none; }
-}
