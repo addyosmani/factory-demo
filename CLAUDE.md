@@ -20,6 +20,8 @@ TMDB_USE_MOCKS=true npm run build
 ## Conventions
 
 - Use strict TypeScript and the Next.js App Router. Server data access belongs in `lib/`.
+- Before changing a Next.js API or convention, read the matching versioned guide under
+  `node_modules/next/dist/docs/`; this project runs Next.js 16.3 or later.
 - Import `server-only` in modules that can read `TMDB_API_KEY`. Never introduce a
   `NEXT_PUBLIC_` copy of that key or commit an `.env.local` file.
 - Keep server components as the default. Use client components only for browser state or
