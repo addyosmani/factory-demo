@@ -13,6 +13,14 @@ type FavoritesStorage = {
   setItem(key: string, value: string): void;
 };
 
+export function accessFavoritesStorage(getStorage: () => FavoritesStorage) {
+  try {
+    return getStorage();
+  } catch {
+    return null;
+  }
+}
+
 export function addFavorite(favorites: FavoriteMovie[], movie: FavoriteMovie) {
   return [movie, ...favorites.filter((favorite) => favorite.id !== movie.id)];
 }

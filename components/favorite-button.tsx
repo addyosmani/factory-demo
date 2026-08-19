@@ -2,7 +2,9 @@
 
 import { useSyncExternalStore } from "react";
 import {
+  accessFavoritesStorage,
   addFavorite,
+  FAVORITES_KEY,
   readFavorites,
   removeFavorite,
   writeFavorites,
@@ -21,7 +23,7 @@ export function FavoriteButton({ movie }: { movie: FavoriteMovie }) {
 
   function toggleFavorite() {
     const next = isFavorite ? removeFavorite(favorites, movie.id) : addFavorite(favorites, movie);
-    if (writeFavorites(window.localStorage, next)) {
+    if (writeFavorites(accessFavoritesStorage(() => window.localStorage), next)) {
       window.dispatchEvent(new Event(FAVORITES_CHANGED));
     }
   }
@@ -48,10 +50,12 @@ function subscribe(onChange: () => void) {
 
 function getFavoritesSnapshot() {
   try {
-    const value = window.localStorage.getItem("reel-good:favorites:v1");
+    const storage = accessFavoritesStorage(() => window.localStorage);
+    if (!storage) return EMPTY_FAVORITES;
+    const value = storage.getItem(FAVORITES_KEY);
     if (value !== cachedValue) {
       cachedValue = value;
-      cachedFavorites = readFavorites(window.localStorage);
+      cachedFavorites = readFavorites(storage);
     }
     return cachedFavorites;
   } catch {

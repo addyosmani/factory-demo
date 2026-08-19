@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  accessFavoritesStorage,
   addFavorite,
   FAVORITES_KEY,
   readFavorites,
@@ -39,5 +40,16 @@ describe("favorites", () => {
     expect(readFavorites(memoryStorage({ [FAVORITES_KEY]: "not-json" }))).toEqual([]);
     expect(readFavorites(null)).toEqual([]);
     expect(writeFavorites(null, [movie])).toBe(false);
+  });
+
+  it("contains errors while acquiring or using storage", () => {
+    const unavailable = {
+      getItem: () => { throw new Error("blocked"); },
+      setItem: () => { throw new Error("blocked"); },
+    };
+
+    expect(accessFavoritesStorage(() => { throw new Error("blocked"); })).toBeNull();
+    expect(readFavorites(unavailable)).toEqual([]);
+    expect(writeFavorites(unavailable, [movie])).toBe(false);
   });
 });
