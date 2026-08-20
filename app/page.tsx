@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MovieGrid } from "@/components/movie-grid";
+import { QuickFinder } from "@/components/quick-finder";
 import { SetupNotice } from "@/components/setup-notice";
 import { getHomeMovies, imageUrl, MissingTmdbKeyError } from "@/lib/tmdb";
 
@@ -38,6 +39,7 @@ export default async function Home() {
       </section>
 
       <div className="page-shell home-content">
+        <QuickFinder trending={trending} popular={popular} />
         <MovieGrid
           eyebrow="Updated weekly"
           title="Trending now"
