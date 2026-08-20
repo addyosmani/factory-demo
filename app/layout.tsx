@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { themeBootstrapScript } from "@/lib/theme";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -11,17 +13,23 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeBootstrapScript }} />
+      </head>
       <body>
         <header className="site-header">
           <Link className="wordmark" href="/" aria-label="Reel Good home">
             <span className="wordmark-mark" aria-hidden="true">R</span>
             <span>Reel Good</span>
           </Link>
-          <nav aria-label="Primary navigation">
-            <Link href="/">Discover</Link>
-            <a href="#about">About</a>
-          </nav>
+          <div className="header-actions">
+            <nav aria-label="Primary navigation">
+              <Link href="/">Discover</Link>
+              <a href="#about">About</a>
+            </nav>
+            <ThemeToggle />
+          </div>
         </header>
         <main>{children}</main>
         <footer id="about" className="site-footer">
